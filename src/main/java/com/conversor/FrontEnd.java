@@ -1,5 +1,5 @@
 // Classe FrontEnd.java
-package com.coversor;
+package com.conversor;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -36,17 +36,17 @@ public class FrontEnd {
     private BackEnd backEnd;
 
     public FrontEnd() {
-        checkBoxSelect = new String[] { "" };
-
-        frame = new JFrame("MultiConversor");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        initComponents();
-
-        addListeners();
-
-        frame.pack();
-        frame.setVisible(true);
+        checkBoxSelect = new String[] { "" };  // Inicializa a seleção da checkbox como uma string vazia
+    
+        frame = new JFrame("MultiConversor");  // Cria uma nova janela com o título "MultiConversor"
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Define o comportamento padrão ao fechar a janela
+    
+        initComponents();  // Inicializa os componentes da interface gráfica
+    
+        addListeners();  // Adiciona os ouvintes de eventos aos componentes
+    
+        frame.pack();  // Ajusta o tamanho da janela automaticamente
+        frame.setVisible(true);  // Torna a janela visível na tela
     }
 
     private void initComponents() {
@@ -96,19 +96,19 @@ public class FrontEnd {
     }
 
     private void addListeners() {
-        // open Files
+        // Abrir caixa de seletor de arquivos
         openButton.addActionListener(new ActionListener() {
             @Override
-
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
+                JFileChooser fileChooser = new JFileChooser(); // Cria um seletor de arquivos
 
-                fileChooser.setMultiSelectionEnabled(true);
+                fileChooser.setMultiSelectionEnabled(true); // Habilita a seleção de múltiplos arquivos
 
+                // Define um filtro para mostrar apenas arquivos PNG, JPEG e PDF
                 FileNameExtensionFilter filter = new FileNameExtensionFilter(
                         "PNG, JPEG, and PDF files", "png", "jpeg", "jpg", "pdf");
 
-                fileChooser.setFileFilter(filter);
+                fileChooser.setFileFilter(filter); // Aplica o filtro ao seletor de arquivos
 
                 boolean validSelection = false;
                 while (!validSelection) {
@@ -116,10 +116,11 @@ public class FrontEnd {
                     int returnValue = fileChooser.showOpenDialog(frame);
 
                     if (returnValue == JFileChooser.APPROVE_OPTION) {
-                        // Pega os arquivos selecionados
+                        // Obtém os arquivos selecionados
                         File[] selectedFiles = fileChooser.getSelectedFiles();
+
                         if (selectedFiles.length > 0) {
-                            // Verifica se todas as extensões são iguais
+                            // Verifica se todas as extensões dos arquivos selecionados são iguais
                             String firstExtension = getFileExtension(selectedFiles[0]);
                             boolean allSameExtension = true;
 
@@ -131,21 +132,25 @@ public class FrontEnd {
                             }
 
                             if (allSameExtension) {
-                                validSelection = true;
+                                validSelection = true; // Indica que uma seleção válida foi feita
+                                // Torna visíveis as checkboxes para os formatos de arquivo
                                 checkBoxPDF.setVisible(true);
                                 checkBoxJPEG.setVisible(true);
                                 checkBoxPNG.setVisible(true);
 
+                                // Monta uma string com os nomes dos arquivos selecionados
                                 StringBuilder fileNames = new StringBuilder("Arquivos selecionados: ");
                                 for (int i = 0; i < selectedFiles.length; i++) {
                                     File file = selectedFiles[i];
                                     fileNames.append(file.getName()).append(", ");
-                                    filePathList.add(file.getAbsolutePath());
+                                    filePathList.add(file.getAbsolutePath()); // Adiciona o caminho do arquivo à lista
                                 }
                                 selectedFileLabel.setText(fileNames.toString().trim());
 
+                                // Define o texto para mostrar o formato do arquivo
                                 formatFile.setText("Formato do arquivo: " + firstExtension);
 
+                                // Ajusta a visibilidade das checkboxes com base na extensão do arquivo
                                 if (firstExtension.equals("pdf")) {
                                     checkBoxPDF.setVisible(false);
                                 } else if (firstExtension.equals("jpg") || firstExtension.equals("jpeg")) {
@@ -154,67 +159,71 @@ public class FrontEnd {
                                     checkBoxPNG.setVisible(false);
                                 }
 
+                                // Torna visíveis os painéis de informações e checkboxes
                                 panelInfoFile.setVisible(true);
                                 panelContentChecksBoxs.setVisible(true);
 
-                                frame.pack();
+                                frame.pack(); // Ajusta o tamanho do frame
                             } else {
+                                // Mostra uma mensagem de erro se os arquivos tiverem extensões diferentes
                                 JOptionPane.showMessageDialog(frame,
                                         "Por favor, selecione arquivos com a mesma extensão.",
                                         "Extensões Diferentes", JOptionPane.ERROR_MESSAGE);
                             }
                         }
                     } else {
-                        break;
+                        break; // Sai do loop se o diálogo for cancelado
                     }
                 }
             }
-
         });
 
-        // event checkBox
+        // Desabilitar checkboxs
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                JCheckBox checkBox = (JCheckBox) event.getSource();
-                Container container = checkBox.getParent();
+                JCheckBox checkBox = (JCheckBox) event.getSource(); // Obtém a checkbox que disparou o evento
+                Container container = checkBox.getParent(); // Obtém o contêiner pai da checkbox
 
-                // disable all and active only select
+                // Desabilita todas as checkboxes e habilita apenas a selecionada
                 for (Component component : container.getComponents()) {
                     if (component instanceof JCheckBox) {
                         JCheckBox otherCheckBox = (JCheckBox) component;
                         if (otherCheckBox != checkBox) {
-                            otherCheckBox.setEnabled(false);
+                            otherCheckBox.setEnabled(false); // Desabilita as outras checkboxes
                         } else {
-                            checkBoxSelect[0] = checkBox.getText();
-                            checkBox.setEnabled(true);
+                            checkBoxSelect[0] = checkBox.getText(); // Armazena o texto da checkbox selecionada
+                            checkBox.setEnabled(true); // Habilita a checkbox selecionada
                         }
                     }
                 }
 
+                // Se a checkbox foi desmarcada, reabilita todas as checkboxes
                 if (!checkBox.isSelected()) {
                     for (Component component : container.getComponents()) {
                         if (component instanceof JCheckBox) {
-                            component.setEnabled(true);
+                            component.setEnabled(true); // Reabilita todas as checkboxes
                         }
                     }
 
-                    checkBoxSelect[0] = "";
+                    checkBoxSelect[0] = ""; // Limpa a seleção armazenada
                 }
             }
         };
 
+        // Adicionar o evento "Desabilitar checkboxs"
         checkBoxJPEG.addActionListener(actionListener);
         checkBoxPDF.addActionListener(actionListener);
         checkBoxPNG.addActionListener(actionListener);
 
-        // finish
+        // Adicionar o evento no botão de "Inciar conversão"
         finishButton.addActionListener(new ActionListener() {
             @Override
-
             public void actionPerformed(ActionEvent e) {
                 try {
+                    // Chama o método que lida com a conversão de arquivos no back-end
                     backEnd.handleFileConversion();
                 } catch (IOException e1) {
+                    // Imprime o stack trace no console se ocorrer uma IOException
                     e1.printStackTrace();
                 }
             }
@@ -223,38 +232,39 @@ public class FrontEnd {
 
     // SETTERS
     public void setBackEnd(BackEnd backEnd) {
-        this.backEnd = backEnd;
+        this.backEnd = backEnd; // Define o objeto back-end
     }
 
-    public void setMessage(String messagem) {
-        finishButton.setText(messagem);
-        finishButton.setEnabled(false);
+    public void setMessage(String message) {
+        finishButton.setText(message); // Define o texto do botão 'finishButton'
+        finishButton.setEnabled(false); // Desabilita o botão 'finishButton'
 
+        // Cria um timer para reativar o botão após 2 segundos
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                finishButton.setText("Iniciar a conversão");
-                finishButton.setEnabled(true);
+                finishButton.setText("Iniciar a conversão"); // Redefine o texto do botão
+                finishButton.setEnabled(true); // Reabilita o botão
             }
-        }, 2000);
+        }, 2000); // Define o atraso de 2000 milissegundos (2 segundos)
     }
 
     // GETTERS
     public ArrayList<String> getSelectedFilePath() {
-        return filePathList;
+        return filePathList; // Retorna a lista de caminhos dos arquivos selecionados
     }
 
     public String getCheckBoxSelection() {
-        return checkBoxSelect[0];
+        return checkBoxSelect[0]; // Retorna a seleção da checkbox
     }
 
-    /* METHODS */
+    // METHODS
     private static String getFileExtension(File file) {
-        String name = file.getName();
-        int lastIndexOf = name.lastIndexOf('.');
+        String name = file.getName(); // Obtém o nome do arquivo
+        int lastIndexOf = name.lastIndexOf('.'); // Encontra o índice do último ponto no nome do arquivo
         if (lastIndexOf == -1) {
-            return ""; // Arquivo sem extensão
+            return ""; // Retorna uma string vazia se o arquivo não tiver extensão
         }
-        return name.substring(lastIndexOf + 1).toLowerCase();
+        return name.substring(lastIndexOf + 1).toLowerCase(); // Retorna a extensão do arquivo em letras minúsculas
     }
 }

@@ -13,7 +13,7 @@ git clone https://github.com/four-people-una/Multi-Coversor.git
 
 ## Navigate to the project directory:
 ```
-cd Multi-Coversor
+cd Multi-Conversor
 ```
 
 Use Maven to compile the project and resolve its dependencies:
@@ -25,7 +25,7 @@ mvn compile
 After successful compilation, you can run the App.java file to start the file converter tool:
 
 ```
-mvn exec:java -Dexec.mainClass="com.coversor.App"
+mvn exec:java -Dexec.mainClass="com.conversor.App"
 ```
 
 ## Running Pre-built Release:
@@ -33,7 +33,7 @@ mvn exec:java -Dexec.mainClass="com.coversor.App"
 If you prefer to use a pre-built release, you can download the latest release from the Releases page. After downloading the JAR file, you can run it using the following command:
 
 ```
-java -jar multi-coversor-1.0.jar
+java -jar multi-conversor-1.0.jar
 ```
 
 ## Dependencies:
