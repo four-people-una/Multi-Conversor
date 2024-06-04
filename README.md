@@ -1,4 +1,4 @@
-**Multi-Coversor**
+**Multi-Conversor**
 
 This project provides a versatile file converter tool that allows users to convert files between different formats. It is built using Java and Maven, and it requires the following steps to build and run:
 
@@ -8,7 +8,7 @@ Make sure you have Maven installed on your system. If not, you can download and 
 
 Clone this repository to your local machine:
 ```
-git clone https://github.com/four-people-una/Multi-Coversor.git
+git clone https://github.com/four-people-una/Multi-Conversor.git
 ```
 
 ## Navigate to the project directory:
