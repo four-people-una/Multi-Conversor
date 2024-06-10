@@ -14,7 +14,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.ArrayList;
 
+/**
+ * Classe FrontEnd contendo a interface grafica do programa
+ * @author Grupo four-people-una
+ * @version 1.0
+ */
 public class FrontEnd {
+    /**
+     * Atributos para definição e preparação da interface grafica do programa
+     */
     private JButton openButton = new JButton("Abrir arquivo");
     private JCheckBox checkBoxJPEG = new JCheckBox("JPEG");
     private JCheckBox checkBoxPDF = new JCheckBox("PDF");
@@ -33,8 +41,14 @@ public class FrontEnd {
     ArrayList<String> filePathList = new ArrayList<>();
     private String[] checkBoxSelect;
 
+    /**
+     * Atributo instancia de BackEnd
+     */
     private BackEnd backEnd;
 
+    /**
+     * Método construtor da classe FrontEnd
+     */
     public FrontEnd() {
         checkBoxSelect = new String[] { "" };  // Inicializa a seleção da checkbox como uma string vazia
     
@@ -49,6 +63,11 @@ public class FrontEnd {
         frame.setVisible(true);  // Torna a janela visível na tela
     }
 
+    /**
+     * Método para inicializar os componentes da interface grafica
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     private void initComponents() {
         // Painel principal
         panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.Y_AXIS));
@@ -230,11 +249,18 @@ public class FrontEnd {
         });
     }
 
-    // SETTERS
+    /**
+     * Método para instanciar internamente o BackEnd
+     */
     public void setBackEnd(BackEnd backEnd) {
         this.backEnd = backEnd; // Define o objeto back-end
     }
 
+    /**
+     * Método SET para definir a mensagem do botão finishButton
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public void setMessage(String message) {
         finishButton.setText(message); // Define o texto do botão 'finishButton'
         finishButton.setEnabled(false); // Desabilita o botão 'finishButton'
@@ -249,16 +275,32 @@ public class FrontEnd {
         }, 2000); // Define o atraso de 2000 milissegundos (2 segundos)
     }
 
-    // GETTERS
+    /**
+     * Método GET para receber uma lista de paths dos arquivos
+     * @return ArrayList<String> contendo uma lista de paths dos arquivis
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public ArrayList<String> getSelectedFilePath() {
         return filePathList; // Retorna a lista de caminhos dos arquivos selecionados
     }
 
+    /**
+     * Método GET para receber a seleção da checkbox
+     * @return String contendo a seleção da checkbox
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public String getCheckBoxSelection() {
         return checkBoxSelect[0]; // Retorna a seleção da checkbox
     }
 
-    // METHODS
+    /**
+     * Método GET para retornar o tipo de arquivo com base na extensão do arquivo
+     * @return String contendo a extensão do arquivo
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     private static String getFileExtension(File file) {
         String name = file.getName(); // Obtém o nome do arquivo
         int lastIndexOf = name.lastIndexOf('.'); // Encontra o índice do último ponto no nome do arquivo

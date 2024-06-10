@@ -19,11 +19,18 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Classe para conversão dos arquivos
+ */
 public class FileConverterUtils {
     private String someFile;
     private ArrayList<String> listFilePath = new ArrayList<>();
 
-    /* CONSTRUCTOR */
+    /**
+     * Método construtor
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public FileConverterUtils(Object obj) throws IOException {
         // Verifica se o objeto de entrada é uma String ou uma lista de Strings
         if (obj instanceof String) {
@@ -33,7 +40,12 @@ public class FileConverterUtils {
         }
     }
 
-    /* GETTERS */
+    /**
+     * Método para salvar arquivo convertido em PNG
+     * @return String com uma mensagem dizendo que foi gravado com sucesso
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public String getFilePNG() throws IOException {
         // Obtém a extensão do arquivo de entrada
         String extensionFile = getFileExtension(someFile);
@@ -43,6 +55,12 @@ public class FileConverterUtils {
         return "Arquivo convertido em PNG com sucesso!";
     }
 
+    /**
+     * Método para salvar arquivo convertido em JPEG
+     * @return String com uma mensagem dizendo que foi gravado com sucesso
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public String getFileJPEG() throws IOException {
         // Obtém a extensão do arquivo de entrada
         String extensionFile = getFileExtension(someFile);
@@ -52,6 +70,12 @@ public class FileConverterUtils {
         return "Arquivo convertido em JPEG com sucesso!";
     }
 
+    /**
+     * Método para salvar arquivo convertido em PDF
+     * @return String com uma mensagem dizendo que foi gravado com sucesso
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public String getFilePDF() throws IOException {
         // Converte o arquivo para PDF
         saveAsPDF();
@@ -59,7 +83,11 @@ public class FileConverterUtils {
         return "Arquivo convertido em PDF com sucesso!";
     }
 
-    /* SETTERS */
+    /**
+     * Método SET para definir o arquivo de input
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public void setInputFile(Object filePath) throws IOException {
         this.someFile = (String) filePath;
     }
@@ -88,7 +116,11 @@ public class FileConverterUtils {
         }
     }
 
-    /* METHODS */
+    /**
+     * Método interno para salvar arquivo convertido em PNG
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public void saveAsPNG(String extension) throws IOException {
         // Cria um objeto File para o arquivo a ser convertido
         File convertSomeFile = new File(someFile);
@@ -135,6 +167,11 @@ public class FileConverterUtils {
         }
     }
 
+    /**
+     * Método interno para salvar o arquivo convertido em JPEG
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public void saveAsJPEG(String extension) throws IOException {
         // Cria um objeto File para o arquivo a ser convertido
         File convertSomeFile = new File(someFile);
@@ -177,6 +214,11 @@ public class FileConverterUtils {
         }
     }
 
+    /**
+     * Método interno para salvar o arquivo convertido em PDF
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public void saveAsPDF() throws IOException {
         // Cria um objeto File para o primeiro arquivo da lista de caminhos de arquivo
         File convertSomeFile = new File(listFilePath.get(0));
@@ -208,6 +250,13 @@ public class FileConverterUtils {
         }
     }
 
+    /**
+     * Método para a criação do diretorio output do programa
+     * Onde serão salvos os arquivos convertidos
+     * @return dirPath contendo o caminho de output
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public String createDirs(File file) throws IOException {
         // Obtém o diretório atual
         Path currentDirectory = Paths.get("").toAbsolutePath();
@@ -231,6 +280,12 @@ public class FileConverterUtils {
         return dirPath;
     }
 
+    /**
+     * Método GET para retornar a extensão do arquivo
+     * @return String contendo a extensão do arquivo
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     private static String getFileExtension(String file) {
         String extension = "";
         int lastDotIndex = file.lastIndexOf('.');

@@ -4,16 +4,37 @@ package com.conversor;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Classe BackEnd contendo o funcionamento interno do programa em relação ao FrontEnd
+ * @author Grupo four-people-una
+ * @version 1.0
+ */
 public class BackEnd {
+    /**
+     * Atributo instancia do FrontEnd
+     */
     private FrontEnd frontEnd;
 
+    /**
+     * Atributos para seleção dos caminhos dos arquivos e o nome dos mesmos na caixa de selação
+     */
     ArrayList<String> filePathList = new ArrayList<>();
     String checkBoxSelection = "";
 
+    /**
+     * Método construtora de BackEnd
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public BackEnd() {
 
     }
 
+    /**
+     * Método para conversão dos arquivos
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public void handleFileConversion() throws IOException {
         // Obtém a lista de caminhos dos arquivos selecionados e a seleção da checkbox
         // do FrontEnd
@@ -65,7 +86,12 @@ public class BackEnd {
         }
     }
 
-    // SETTERS
+    /**
+     * Método SET para instanciar um FrontEnd como atributo
+     * @param frontEnd recebe uma instancia de FrontEnd
+     * @author Grupo four-people-una
+     * @version 1.0
+     */
     public void setFrontEnd(FrontEnd frontEnd) {
         this.frontEnd = frontEnd;
     }
