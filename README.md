@@ -41,6 +41,5 @@ java -jar multi-conversor-1.0.jar
 This project depends on the following libraries:
 
 * Apache PDFBox: A Java library for working with PDF documents.
-* Apache POI: A Java library for working with Microsoft Office documents.
-
+* 
 Make sure these dependencies are resolved during the build process.
