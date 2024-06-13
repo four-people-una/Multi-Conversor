@@ -41,5 +41,5 @@ java -jar multi-conversor-1.0.jar
 This project depends on the following libraries:
 
 * Apache PDFBox: A Java library for working with PDF documents.
-* 
+
 Make sure these dependencies are resolved during the build process.
