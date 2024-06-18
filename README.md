@@ -33,7 +33,7 @@ mvn exec:java -Dexec.mainClass="com.conversor.App"
 If you prefer to use a pre-built release, you can download the latest release from the Releases page. After downloading the JAR file, you can run it using the following command:
 
 ```
-java -jar multi-conversor-1.0.jar
+java -jar multi-conversor-1.1.jar
 ```
 
 ## Dependencies:
